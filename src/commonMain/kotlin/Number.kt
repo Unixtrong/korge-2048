@@ -1,0 +1,21 @@
+import com.soywiz.korim.color.RGBA
+
+enum class Number(val value: Int, val color: RGBA) {
+    LEVEL_00(2, RGBA(240, 228, 218)),
+    LEVEL_01(4, RGBA(236, 224, 201)),
+    LEVEL_02(8, RGBA(255, 178, 120)),
+    LEVEL_03(16, RGBA(254, 150, 92)),
+    LEVEL_04(32, RGBA(247, 123, 97)),
+    LEVEL_05(64, RGBA(235, 88, 55)),
+    LEVEL_06(128, RGBA(236, 220, 146)),
+    LEVEL_07(256, RGBA(240, 212, 121)),
+    LEVEL_08(512, RGBA(244, 206, 96)),
+    LEVEL_09(1024, RGBA(248, 200, 71)),
+    LEVEL_10(2048, RGBA(256, 194, 46)),
+    LEVEL_11(4096, RGBA(104, 130, 249)),
+    LEVEL_12(8192, RGBA(51, 85, 247)),
+    LEVEL_13(16384, RGBA(10, 47, 222)),
+    LEVEL_14(32768, RGBA(9, 43, 202)),
+    LEVEL_15(65536, RGBA(181, 37, 188)),
+    LEVEL_16(131072, RGBA(166, 34, 172))
+}

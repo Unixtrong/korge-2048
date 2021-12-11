@@ -17,7 +17,8 @@ buildscript {
 apply<KorgeGradlePlugin>()
 
 korge {
-	id = "com.sample.demo"
+	id = "com.unixtrong.korge.game2048"
+	name = "2048"
 
 // To enable all targets at once
 
