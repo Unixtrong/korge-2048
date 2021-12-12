@@ -1,6 +1,10 @@
 import com.soywiz.kds.IntArray2
 import kotlin.random.Random
 
+enum class Direction {
+    LEFT, RIGHT, TOP, BOTTOM
+}
+
 class Position(val x: Int, val y: Int)
 
 class PositionMap(private val array: IntArray2 = IntArray2(4, 4, -1)) {
@@ -32,4 +36,20 @@ class PositionMap(private val array: IntArray2 = IntArray2(4, 4, -1)) {
         }
         return null
     }
+
+    fun hasAvailableMoves(): Boolean {
+        array.each { x, y, _ ->
+            if (hasAdjacentEqualPosition(x, y)) return true
+        }
+        return false
+    }
+
+    fun hasAdjacentEqualPosition(x: Int, y: Int): Boolean = getNumberOrdinal(x, y).let {
+        it == getNumberOrdinal(x - 1, y) || it == getNumberOrdinal(x + 1, y)
+                || it == getNumberOrdinal(x, y - 1) || it == getNumberOrdinal(x, y + 1)
+    }
+
+    private fun getOrNull(x: Int, y: Int) = array.tryGet(x, y)?.takeIf { it != -1 }?.let { Position(x, y) }
+
+    private fun getNumberOrdinal(x: Int, y: Int) = array.tryGet(x, y)?.let { blocks[it]?.number?.ordinal } ?: -1
 }

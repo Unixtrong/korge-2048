@@ -2,7 +2,7 @@ import Number.*
 import com.soywiz.korge.view.*
 import com.soywiz.korim.color.Colors
 
-class Block(number: Number) : Container() {
+class Block(val number: Number) : Container() {
 
     private val Number.textSize
         get() = when (this) {

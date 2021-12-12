@@ -1,4 +1,8 @@
+import com.soywiz.korev.Key
 import com.soywiz.korge.Korge
+import com.soywiz.korge.input.SwipeDirection
+import com.soywiz.korge.input.keys
+import com.soywiz.korge.input.onSwipe
 import com.soywiz.korge.view.*
 import com.soywiz.korim.color.Colors
 import com.soywiz.korim.color.RGBA
@@ -40,6 +44,10 @@ fun Container.generateBlock() {
     val number = Number.LEVEL_00.takeIf { Random.nextDouble() < 0.9 } ?: Number.LEVEL_01
     val newId = createNewBlock(number, position)
     map[position.x, position.y] = newId
+}
+
+fun Stage.moveBlocksTo(direction: Direction) {
+    println(direction)
 }
 
 suspend fun main() = Korge(
@@ -126,4 +134,23 @@ suspend fun main() = Korge(
     }
 
     generateBlock()
+
+    root.keys.down {
+        when (it.key) {
+            Key.LEFT -> moveBlocksTo(Direction.LEFT)
+            Key.RIGHT -> moveBlocksTo(Direction.RIGHT)
+            Key.UP -> moveBlocksTo(Direction.TOP)
+            Key.DOWN -> moveBlocksTo(Direction.BOTTOM)
+            else -> Unit
+        }
+    }
+
+    onSwipe(20.0) {
+        when (it.direction) {
+            SwipeDirection.LEFT -> moveBlocksTo(Direction.LEFT)
+            SwipeDirection.RIGHT -> moveBlocksTo(Direction.RIGHT)
+            SwipeDirection.TOP -> moveBlocksTo(Direction.TOP)
+            SwipeDirection.BOTTOM -> moveBlocksTo(Direction.BOTTOM)
+        }
+    }
 }
